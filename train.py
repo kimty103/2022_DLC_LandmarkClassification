@@ -21,6 +21,7 @@ from ExampleClassifierModule import ExampleClassifier
 import argparse
 import torch
 from torch import nn
+from DLCClassifierModule import DLCClassifier
 
 """
 argparse module을 이용해 다양한 argument를 사용하기를 추천합니다.
@@ -48,7 +49,7 @@ args = parser.parse_args()
 
 def main():
     # Classifier는 훈련시 반드시 아래와 같은 형태로 생성됩니다.
-    classifier = ExampleClassifier(args.path_data)
+    classifier = DLCClassifier(args.path_data)
 
     """
     Argument를 전달하는 방식은 수정해도 됩니다.

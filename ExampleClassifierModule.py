@@ -5,7 +5,16 @@ from torch.utils.data import DataLoader
 from torchvision.datasets import ImageFolder
 from torchvision.transforms import transforms
 from torchvision import models
-import tqdm
+from tqdm import tqdm
+
+
+def euclidean_metric(a, b):
+    n = a.shape[0]
+    m = b.shape[0]
+    a = a.unsqueeze(1).expand(n, m, -1)
+    b = b.unsqueeze(0).expand(n, m, -1)
+    logits = -((a - b)**2).sum(dim=2)
+    return logits
 
 class ExampleClassifier(nn.Module):
     """
@@ -35,30 +44,6 @@ class ExampleClassifier(nn.Module):
         각 method에 대한 추가적인 설명은 각 method의 docstring을 참고 해 주세요.
         """
         super().__init__()
-
-        # Please refer to dataset directory structure
-        self.path_data = path_data
-
-        if pretrain is not None:
-            # For evaluation
-            self.model = torch.load(pretrain)
-        else:
-            self.build_model()
-
-        # Dataset loading에 적용하기 위한 transform은 생성자에서 선언
-        self.transform = transforms.Compose([
-            transforms.Resize((128, 128)),
-            transforms.Grayscale(),
-            transforms.ToTensor()
-        ])
-
-        # 데이터셋 구조가 정해져 있으므로, ImageFolder class를 사용하기를 추천
-        # 다른 class를 사용 할 경우 반드시 각 샘플은 (image, label)을 반환해야 함.
-        self.dataset = ImageFolder(
-            self.path_data,
-            transform=self.transform
-        )
-        self.num_data = len(self.dataset)
 
     def build_model(self):
         """
@@ -128,10 +113,10 @@ class ExampleClassifier(nn.Module):
 
             for batch, sample in enumerate(train_loader):
                 img, label = sample
-
                 optim.zero_grad()
 
                 output = self.forward(img)
+                print(output)
 
                 loss_val = loss(output, label)
 
