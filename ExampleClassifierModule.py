@@ -1,6 +1,11 @@
 import torch
 import torch.nn as nn
 from torch import optim
+from torch.utils.data import DataLoader
+from torchvision.datasets import ImageFolder
+from torchvision.transforms import transforms
+from torchvision import models
+import tqdm
 
 class ExampleClassifier(nn.Module):
     """
@@ -169,3 +174,4 @@ class ExampleClassifier(nn.Module):
         pbar.close()
 
         print('Accuracy : {:.4f} %'.format(num_correct * 100 / self.num_data))
+

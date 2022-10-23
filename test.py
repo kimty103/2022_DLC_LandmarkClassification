@@ -3,18 +3,7 @@
 
     PNU Deep Learning Challenge - Track 01. Landmark Classification
 
-    This script contains an example evaluation script.
-    Your classifier class must work with this script for official evaluation.
-
-    Jinsun Park (jspark@pusan.ac.kr / viplab@pusan.ac.kr)
-    Visual Intelligence and Perception Lab., CSE, PNU
-
-    ======================================================================
-
-    2022.10.09 - Initial release
-
 """
-
 
 import argparse
 import importlib
@@ -50,7 +39,7 @@ def main():
     path_module 은 class를 구현 한 파일 (e.g., ExampleClassifierModule.py)이 저장 된 경로 이고,
     module_name은 해당 파일의 .py 확장자를 제외한 이름 (e.g., ExampleClassifierModule) 이며,
     class_name은 해당 파일 내부에 선언된 class 이름 (e.g., ExampleClassifier) 입니다.
-    
+
     세 가지 변수를 본인 환경에 맞는 값으로 바꾸어 실행 하여 정상적으로 정확도 평가가 되면 제출 가능합니다.
     """
 
