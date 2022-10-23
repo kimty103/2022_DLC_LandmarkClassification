@@ -6,7 +6,12 @@ class DLCClassifierModule(ExampleClassifier):
         super.__init__()
 
     def build_model(self):
-        super.build_model(self) #hello world
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') # 학습 환경 설정
+        model = models.resnet50(pretrained=True) # true 옵션으로 사전 학습된 모델을 로드
+
+        num_features = model.fc.in_features
+        model.fc = nn.Linear(num_features, 5)
+        model = model.to(device)
 
     def forward(self, x):
         super.forward(self, x)
