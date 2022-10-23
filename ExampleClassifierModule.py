@@ -1,27 +1,6 @@
-"""
-    PNU CSE TECH WEEK 2022
-
-    PNU Deep Learning Challenge - Track 01. Landmark Classification
-
-    This script contains classifier specification for challenge submission.
-    It is recommended to inherit from this class to implement your classifier.
-
-    Jinsun Park (jspark@pusan.ac.kr / viplab@pusan.ac.kr)
-    Visual Intelligence and Perception Lab., CSE, PNU
-
-    ======================================================================
-
-    2022.10.09 - Initial release
-
-"""
-
 import torch
-from torch import nn
-from torch.utils.data import DataLoader
-from torchvision import transforms
-from torchvision.datasets import ImageFolder
-from tqdm import tqdm
-
+import torch.nn as nn
+from torch import optim
 
 class ExampleClassifier(nn.Module):
     """
