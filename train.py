@@ -33,11 +33,11 @@ parser.add_argument('--path_data', type=str, default='dataset/train',
                     help='Path to dataset')
 parser.add_argument('--path_save', type=str, default='model.pt',
                     help='Path to save model')
-parser.add_argument('--batch_size', type=int, default=32,
+parser.add_argument('--batch_size', type=int, default=16,
                     help='Batch size')
 parser.add_argument('--lr', type=float, default=0.0001,
                     help='Learning rate')
-parser.add_argument('--epochs', type=int, default=5,
+parser.add_argument('--epochs', type=int, default=3,
                     help='Number of epochs to train')
 parser.add_argument('--optim', type=str, default='Adam',
                     help='Optimizer')
@@ -47,10 +47,14 @@ parser.add_argument('--loss', type=str, default='CrossEntropy',
 args = parser.parse_args()
 
 
+def aug_img(path_data):
+    paths = ["cse","hh","rb","wb","wjj"]
+
+
 def main():
     # Classifier는 훈련시 반드시 아래와 같은 형태로 생성됩니다.
     classifier = DLCClassifier(args.path_data)
-
+    aug_img(args.path_data)
     """
     Argument를 전달하는 방식은 수정해도 됩니다.
     """
