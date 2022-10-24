@@ -33,11 +33,11 @@ parser.add_argument('--path_data', type=str, default='dataset/train',
                     help='Path to dataset')
 parser.add_argument('--path_save', type=str, default='model.pt',
                     help='Path to save model')
-parser.add_argument('--batch_size', type=int, default=2,
+parser.add_argument('--batch_size', type=int, default=32,
                     help='Batch size')
 parser.add_argument('--lr', type=float, default=0.0001,
                     help='Learning rate')
-parser.add_argument('--epochs', type=int, default=2,
+parser.add_argument('--epochs', type=int, default=5,
                     help='Number of epochs to train')
 parser.add_argument('--optim', type=str, default='Adam',
                     help='Optimizer')

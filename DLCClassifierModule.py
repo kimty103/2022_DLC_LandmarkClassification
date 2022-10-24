@@ -51,6 +51,7 @@ class DLCClassifier(ExampleClassifier):
         self.dataset = ImageFolder(
             self.path_data,
             transform=transforms.ToTensor()
+
         )
         self.transforms = transforms.Compose([
             transforms.Resize((128, 128)),
@@ -67,7 +68,7 @@ class DLCClassifier(ExampleClassifier):
 
         num_features = self.model.fc.in_features
         self.model.fc = nn.Linear(num_features, 5)
-        model = self.model.to(self.device)
+        self.model = self.model.to(self.device)
 
     def forward(self, x):
         y = self.model(x)
@@ -79,7 +80,7 @@ class DLCClassifier(ExampleClassifier):
         loss = config['loss']
         optim = config['optim']
 
-        train_loader = DataLoader(self.dataset, batch_size=batch_size)
+        train_loader = DataLoader(self.dataset, batch_size=batch_size,shuffle=True)
 
         print('Number of data : {}'.format(self.num_data))
 
@@ -93,6 +94,7 @@ class DLCClassifier(ExampleClassifier):
 
             for batch, sample in enumerate(train_loader):
                 img, label = sample
+                img, label = img.to(self.device), label.to(self.device)
                 optim.zero_grad()
 
                 output = self.forward(img)

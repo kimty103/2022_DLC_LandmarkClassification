@@ -61,9 +61,10 @@ def main():
     classifier.model.eval()
 
     pbar = tqdm(total=classifier.num_data, dynamic_ncols=True)
-
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     for batch, sample in enumerate(eval_loader):
         img, label = sample
+        img, label = img.to(device), label.to(device)
 
         output = classifier.forward(img)
 

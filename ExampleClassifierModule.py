@@ -148,7 +148,7 @@ class ExampleClassifier(nn.Module):
 
         for batch, sample in enumerate(eval_loader):
             img, label = sample
-
+            img, label = img.to(self.device), label.to(self.device)
             output = self.forward(img)
 
             if label.item() == torch.argmax(output).item():
